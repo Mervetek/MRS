@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MRS.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        Width="800"
+        Height="800"
+        x:Class="MRS.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MRS">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Border>
+        <UniformGrid Background="Black" Columns="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGreen" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="8" Content="YENİ KAYIT" Command="{Binding CreateAppointment}"></Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DodgerBlue" VerticalContentAlignment="Center" Margin="8" HorizontalContentAlignment="Center" Content="KAYITLARI LİSTELE"></Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="IndianRed" VerticalContentAlignment="Center" Margin="8" HorizontalContentAlignment="Center" Content="KAYIT SİL"></Button>
+        </UniformGrid>
+    </Border>
+
+
+</Window>
