@@ -1,4 +1,5 @@
 using System;
+using System.Reactive;
 using Avalonia.Collections;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -13,13 +14,14 @@ public class ClientInformationViewModel : ViewModelBase
 
         for (var i = 0; i < 24; i++)
         {
-            Hours.Add(i+1);
+            Hours.Add(i + 1);
         }
 
         Minutes.Add("00");
         Minutes.Add("15");
         Minutes.Add("30");
         Minutes.Add("45");
+        
         
     }
 
@@ -35,4 +37,5 @@ public class ClientInformationViewModel : ViewModelBase
     [Reactive] public AvaloniaList<int> Hours { get; set; } = new();
     [Reactive] public AvaloniaList<string> Minutes { get; set; } = new();
 
+    public ReactiveCommand<Unit, Unit> SaveToFile { get; }
 }
