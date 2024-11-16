@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MRS.ViewModels"
+             mc:Ignorable="d" 
+             Width="300"
+             Height="580"
+             x:Class="MRS.Views.ClientInformation"
+             x:DataType="viewModels:ClientInformationViewModel">
+
+    <Design.DataContext>
+        <viewModels:ClientInformationViewModel Name="Merve" Surname="Sayın" AppointmentType="Online"
+                                               AppointmentHour="1" AppointmentMinute="15" />
+    </Design.DataContext>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom"  BorderThickness="1" BorderBrush="Green">
+              <Button Content="KAYDET" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        </Border>
+      
+        <Border BorderThickness="1" BorderBrush="Black">
+            <StackPanel>
+                <!-- İsim -->
+                <UniformGrid Columns="2" Margin="8">
+                    <TextBlock Text="İsim" VerticalAlignment="Center" />
+                    <TextBox Text="{Binding Name}" />
+                </UniformGrid>
+                <UniformGrid Columns="2" Margin="8">
+                    <TextBlock Text="Soyisim" VerticalAlignment="Center" />
+                    <TextBox Text="{Binding Surname}" />
+                </UniformGrid>
+
+                <!-- Soyisim -->
+                <UniformGrid Columns="2" Margin="8">
+                    <TextBlock Text="Görüşme Tipi" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding AppointmentTypeList}"
+                              SelectedValue="{Binding AppointmentType}"
+                              HorizontalAlignment="Stretch" />
+                </UniformGrid>
+
+
+                <Border Background="Khaki" Margin="4,0" Height="2" />
+
+                <!-- Tarih -->
+                <Calendar SelectionMode="SingleDate" DisplayMode="Month" SelectedDate="{Binding AppointmentTime}" />
+
+                <Button Height="" HorizontalAlignment="Stretch" />
+
+                <Border Background="Khaki" Margin="4,0" Height="2" />
+
+                <!-- Saat -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Saat Seçin:" VerticalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" Margin="8" VerticalAlignment="Center">
+                        <ComboBox ItemsSource="{Binding Hours}"
+                                  SelectedValue="{Binding AppointmentHour}" />
+                        <ComboBox ItemsSource="{Binding Minutes}"
+                                  SelectedValue="{Binding AppointmentMinute}" />
+                    </StackPanel>
+                </StackPanel>
+
+
+            </StackPanel>
+        </Border>
+    </DockPanel>
+
+</Window>
