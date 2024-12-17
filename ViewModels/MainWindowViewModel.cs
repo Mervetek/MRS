@@ -1,14 +1,16 @@
-﻿using System.Reactive;
+﻿using System.IO;
+using System.Reactive;
 using System.Windows.Input;
+using MRS.Interfaces;
 using MRS.Views;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
 namespace MRS.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ViewModelBase, IAppointmentOperations
 {
-   public MainWindowViewModel()
+    public MainWindowViewModel()
    {
        CreateAppointment = ReactiveCommand.Create(() =>
        {
@@ -18,11 +20,32 @@ public class MainWindowViewModel : ViewModelBase
            };
            newWindow.Show();
        });
+
+       EditAppointments = ReactiveCommand.Create(() =>
+       {
+            
+       });
+
+       DeleteAppointment = ReactiveCommand.Create(() =>
+       {
+           
+       });
+       
+       /*
+        * Var olan dosyanın okunması
+        * Dosya kayıt
+        * Edit
+        * Delete
+        */
+
    }
 
-   [Reactive] public ClientInformationViewModel NewClient { get; set; } = new();
+    [Reactive] public ClientInformationViewModel NewClient { get; set; } = new();
 
-  public ReactiveCommand<Unit, Unit> CreateAppointment { get; }
-  public ReactiveCommand<Unit, Unit> ListAppointments { get; }
-  public ReactiveCommand<Unit, Unit> DeleteAppointment { get; }
+   [Reactive] public ClientInformationViewModel? SelectedClient { get; set; }
+
+
+   public ReactiveCommand<Unit, Unit> CreateAppointment { get; }
+   public ReactiveCommand<Unit, Unit> EditAppointments { get; }
+   public ReactiveCommand<Unit, Unit> DeleteAppointment { get; }
 }

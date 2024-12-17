@@ -2,6 +2,6 @@ namespace MRS;
 
 public enum AppointmentType
 {
-    FaceToFace,
+    Yüzyüze,
     Online
 }

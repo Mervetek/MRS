@@ -1,6 +1,9 @@
 using System;
 using System.Reactive;
 using Avalonia.Collections;
+using MRS.Interfaces;
+using MRS.Services;
+using MRS.Utils;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -8,6 +11,8 @@ namespace MRS.ViewModels;
 
 public class ClientInformationViewModel : ViewModelBase
 {
+    private IFileOperations _fileOperations = new FileService();
+    private readonly Converter _converter = new();
     public ClientInformationViewModel()
     {
         AppointmentTypeList = Enum.GetValues(typeof(AppointmentType));
@@ -21,8 +26,13 @@ public class ClientInformationViewModel : ViewModelBase
         Minutes.Add("15");
         Minutes.Add("30");
         Minutes.Add("45");
-        
-        
+
+        SaveAppointment = ReactiveCommand.Create(() =>
+        {
+            _fileOperations.SaveToFile(this);
+        });
+
+
     }
 
     [Reactive] public string Name { get; set; } = "";
@@ -36,6 +46,8 @@ public class ClientInformationViewModel : ViewModelBase
 
     [Reactive] public AvaloniaList<int> Hours { get; set; } = new();
     [Reactive] public AvaloniaList<string> Minutes { get; set; } = new();
+    
+    public ReactiveCommand<Unit, Unit> SaveAppointment { get; }
 
-    public ReactiveCommand<Unit, Unit> SaveToFile { get; }
+
 }

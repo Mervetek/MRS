@@ -16,7 +16,10 @@
 
     <DockPanel>
         <Border DockPanel.Dock="Bottom"  BorderThickness="1" BorderBrush="Green">
-              <Button Content="KAYDET" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+              <Button Content="KAYDET"
+                      Command="{Binding SaveAppointment}"
+                      HorizontalAlignment="Stretch" 
+                      HorizontalContentAlignment="Center" />
         </Border>
       
         <Border BorderThickness="1" BorderBrush="Black">
