@@ -10,13 +10,31 @@ public class Converter
 {
     private static readonly TextFileReaderWriter ReaderWriter = new();
     private static readonly string DocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    private  static readonly string _counter = ReaderWriter.ReadFile(Path.Combine(DocumentsPath, "counter.txt"));
-    private int _id = int.Parse(_counter);
+    private static string _counter = "";
+
+
     public ClientSummary ConvertToSummary(ClientInformationViewModel client)
     {
+        _counter = ReaderWriter.ReadFile(Path.Combine(DocumentsPath, "counter.txt"));
+        var id = _counter == "" ? 0 : int.Parse(_counter);
         return new ClientSummary
         {
-            Id = _id++,
+            Id = ++id,
+            Name = client.Name,
+            Surname = client.Surname,
+            AppointmentTime = client.AppointmentTime ?? DateTime.Now,
+            Time = $"{client.AppointmentHour}:{client.AppointmentMinute}",
+            Type = client.AppointmentType
+        };
+    }
+
+    public ClientSummary ClientConvertToEditedItem(ClientInformationViewModel client)
+    {
+        _counter = ReaderWriter.ReadFile(Path.Combine(DocumentsPath, "counter.txt"));
+        var id = _counter == "" ? 0 : int.Parse(_counter);
+        return new ClientSummary
+        {
+            Id = id,
             Name = client.Name,
             Surname = client.Surname,
             AppointmentTime = client.AppointmentTime ?? DateTime.Now,
@@ -40,7 +58,6 @@ public class Converter
     public ClientInformationViewModel ConvertToClientInformation(ClientSummaryCardViewModel summary)
     {
         var parts = summary.Time.Split(":");
-
         return new ClientInformationViewModel
         {
             Name = summary.Name,

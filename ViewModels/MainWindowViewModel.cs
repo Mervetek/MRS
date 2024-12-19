@@ -1,9 +1,5 @@
-﻿using System.IO;
-using System.Reactive;
-using System.Windows.Input;
-using Avalonia.Collections;
+﻿using System.Reactive;
 using MRS.Interfaces;
-using MRS.Services;
 using MRS.Views;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -20,9 +16,8 @@ public class MainWindowViewModel : ViewModelBase, IAppointmentOperations
             {
                 DataContext = NewClient
             };
+            
             newWindow.Show();
-
-            ClientCards = new ClientCardsViewModel();
         });
 
         EditAppointments = ReactiveCommand.Create(() =>

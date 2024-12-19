@@ -17,19 +17,24 @@ public class FileService : IFileOperations
 {
     private Converter _converter = new();
     private TextFileReaderWriter _readerWriter = new();
+    private string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
     public async Task SaveToFile(ClientInformationViewModel client)
     {
-        // kayıt önceden var mı kontrol et varsa güncelle yoksa yeni kayıt ekle
+        //PROBLEMS
+        //!!!Kayıt eklendiginde listeye hemen düşmüyor ekranı kapatıp acmak gerekiyor..
+        //!!!Edit yaptıgımda yeni kayıt ekliyor.
+
+        //FEATURES
         // tarihi geçen kayıtları otomatik sil
         // silme islemi henuz implement edilmedi
-        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        
         var appointments = GetAllAppointments(Path.Combine(documentsPath, "appointment.json")) ??
                            new AvaloniaList<ClientSummary>();
 
-        if (DoesClientExist(_converter.ConvertToSummary(client), appointments))
+        if (DoesClientExist(_converter.ClientConvertToEditedItem(client), appointments))
         {
-            UpdateClient(_converter.ConvertToSummary(client), appointments);
+            UpdateClient(_converter.ClientConvertToEditedItem(client), appointments);
             return;
         }
 
@@ -64,14 +69,18 @@ public class FileService : IFileOperations
 
     private static void UpdateClient(ClientSummary client, AvaloniaList<ClientSummary> clients)
     {
-        foreach (var currentClient in clients.Where(currentClient =>
-                     currentClient.Id == client.Id))
+        foreach (var t in clients.Where(t => t.Id == client.Id))
         {
-            currentClient.Name = client.Name;
-            currentClient.Surname = client.Surname;
-            currentClient.Type = client.Type;
-            currentClient.AppointmentTime = client.AppointmentTime;
-            currentClient.Time = client.Time;
+            t.Name = client.Name;
+            t.Surname = client.Surname;
+            t.Type = client.Type;
+            t.AppointmentTime = client.AppointmentTime;
+            t.Time = client.Time;
         }
+    }
+
+    public AvaloniaList<ClientSummary>? RefreshList()
+    {
+       return GetAllAppointments(Path.Combine(documentsPath, "appointment.json"));
     }
 }

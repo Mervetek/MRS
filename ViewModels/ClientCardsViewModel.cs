@@ -28,6 +28,6 @@ public class ClientCardsViewModel : ViewModelBase
             Console.Write(appointment);
         }
     }
-
+    
     [Reactive] public AvaloniaList<ClientSummaryCardViewModel> ClientCards { get; set; } = new();
 }
