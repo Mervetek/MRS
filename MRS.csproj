@@ -25,4 +25,5 @@
         <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
         <PackageReference Include="Velvet.Library.Avalonia.Font.Awesome" Version="1.0.1" />
     </ItemGroup>
+    
 </Project>

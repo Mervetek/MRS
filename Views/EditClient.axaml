@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MRS.ViewModels"
+             mc:Ignorable="d" 
+             x:Class="MRS.Views.EditClient"
+             x:DataType="viewModels:EditClientViewModel">
+    
+    <Design.DataContext>
+        <viewModels:EditClientViewModel>
+            <viewModels:EditClientViewModel.ClientSummary>
+                <viewModels:ClientSummaryCardViewModel Name="Merve" Surname="Sayin"></viewModels:ClientSummaryCardViewModel>
+            </viewModels:EditClientViewModel.ClientSummary>
+        </viewModels:EditClientViewModel>
+    </Design.DataContext>
+    
+    
+    <StackPanel>
+        <UniformGrid Columns="2">
+            <TextBlock Text="İsim" />
+            <TextBlock Text="{Binding ClientSummary.Name}" />
+        </UniformGrid>
+        <UniformGrid Columns="2">
+            <TextBlock Text="Soyisim" />
+            <TextBlock Text="{Binding ClientSummary.Surname}" />
+        </UniformGrid>
+        <UniformGrid Columns="2">
+            <TextBlock Text="Görüşme Tipi" />
+
+        </UniformGrid>
+    </StackPanel>
+</Window>

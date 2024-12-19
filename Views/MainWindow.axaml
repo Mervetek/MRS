@@ -20,7 +20,7 @@
     <Border>
         <UniformGrid Background="Black" Columns="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGreen" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="8" Content="YENİ KAYIT" Command="{Binding CreateAppointment}"></Button>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DodgerBlue" VerticalContentAlignment="Center" Margin="8" HorizontalContentAlignment="Center" Content="KAYITLARI LİSTELE"></Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DodgerBlue" VerticalContentAlignment="Center" Margin="8" HorizontalContentAlignment="Center" Content="KAYITLARI LİSTELE" Command="{Binding EditAppointments}" />
             <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="IndianRed" VerticalContentAlignment="Center" Margin="8" HorizontalContentAlignment="Center" Content="KAYIT SİL"></Button>
         </UniformGrid>
     </Border>

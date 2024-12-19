@@ -4,9 +4,10 @@ namespace MRS.Models;
 
 public record ClientSummary
 {
-    public required string Name { get; init; }
-    public required string Surname { get; init; }
-    public required AppointmentType Type { get; init; }
-    public required DateTime AppointmentTime { get; init; }
-    public required string Time { get; init; }
+    public required int Id { get; init; }
+    public required string Name { get; set; }
+    public required string Surname { get; set; }
+    public required AppointmentType Type { get; set; }
+    public required DateTime AppointmentTime { get; set; }
+    public required string Time { get; set; }
 }

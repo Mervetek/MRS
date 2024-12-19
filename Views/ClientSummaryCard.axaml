@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MRS.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="150"
+             x:Class="MRS.Views.ClientSummaryCard"
+             x:DataType="viewModels:ClientSummaryCardViewModel">
+
+    <Design.DataContext>
+        <viewModels:ClientSummaryCardViewModel Name="Merve" Surname="Sayın" Time="13:30" />
+    </Design.DataContext>
+
+    <Button Command="{Binding EditAppointment}"
+        Background="LightSlateGray"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        CornerRadius="14">
+        <StackPanel Spacing="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <TextBlock Text="{Binding Name}" />
+                <TextBlock Text="{Binding Surname}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Type}" />
+            <TextBlock Text="{Binding AppointmentTime, StringFormat='yyyy-MM-dd'}" />
+            <TextBlock Text="{Binding Time}" />
+        </StackPanel>
+    </Button>
+
+
+</UserControl>
